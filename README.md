@@ -22,9 +22,9 @@ Your solution for this assignment will create a multi-threaded application that 
 
 <table class="image">
 <caption align="bottom">Figure 1: Creation of an application to processes data from multiple files using multiple parsing threads that store data into a shared buffer.  Multiple threads will take items out of the shared buffer for processing.  Shared resources will need to be protected from race conditions using synchronization methods. </caption>
-<tr><td>
-![](PA2-overview.png)
+<tr><td>before the table image![](PA2-overview.png)
 </td></tr>
+other info
 </table>
 
 ![](PA2-overview.png)
