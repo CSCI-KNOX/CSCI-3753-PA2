@@ -165,7 +165,7 @@ We can now run with a single `parsor` and a single `converter` passing informati
 
 #### Step 5
 The next step will create multiple `converter` threads to read from multiple `parsor` threads via a single shared buffer.  The `converter` will wait for data (spin wait is acceptable) but will terminate if there are no active `parsor` and the buffer is empty.  
-![](Step5.png)
+![](images/Step5.png)
 
 #### Step 6
 Moving back to the `parsor` threads, each thread must record the data it has processed.  Files are a shared resource and therefore must be protected from multiple processes accessing it.
