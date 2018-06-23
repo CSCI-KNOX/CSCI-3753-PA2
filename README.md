@@ -21,7 +21,7 @@ This monolithic solution would work well on a single CPU, but would still be pau
 Your solution for this assignment will create a multi-threaded application that resolves domain names to IP addresses. The application is composed of two sub-systems, `parser` and `converter`. The `parser` will extract a domain name from the input data and pass it on to the `converter`, which will find the IP address and write the information to the output file. The sub-systems communicate with each other using a bounded buffer. To make the application even more efficient, you will design it to support multiple `parser` and multiple `converter` so that no single input item can cause the system to be blocked no matter how long it takes its processing to be performed.  See Figure 1 for a visual description.
 
 
-![](PA2-overview.png)
+![](images/PA2-overview.png)
 <table class="image" width=480>
 <caption align="bottom">Figure 1: Creation of an application to processes data from multiple files using multiple parsing threads that store data into a shared buffer.  Multiple threads will take items out of the shared buffer for processing.  Shared resources will need to be protected from race conditions using synchronization methods. </caption>
 <tr><td>
@@ -147,21 +147,21 @@ This application must read parameters from the command line (see section 4.1) wi
 
 #### Step 1
 The first step is to create a simple program to create a parsing thread that will repeatedly read a line from a given file and add an entry into the shared buffer.  You will need to validate that the buffer has the correct number of entries.
-![](Step1.png)
+![](images/Step1.png)
 
 #### Step 2
 The next step is to use the parsing thread to create a number of entries in the buffer.  Once that process is complete, start a conversion thread to take items out of the buffer.  You can write the results to the output files.
-![](Step2.png)
+![](images/Step2.png)
 
 #### Step 3
 Once you are assured that your application can write and read to the buffer correctly (although serially), then try to make them run concurrently.  Multiple processes accessing and modifying the same data can cause race conditions.  You must protect the critical sections of each thread  with a mutex.
 
-![](Step3.png)
+![](images/Step3.png)
 
 #### Step 4
 We can now run with a single `parsor` and a single `converter` passing information via a shared buffer that is protected by a mutex.  Lets take the next step and create multiple `parsor` threads to read from multiple different files.  Each `parsor` can read single lines from a different file.  The `parsor` will terminate when all lines from the file have been  processed.
 
-![](Step4.png)
+![](images/Step4.png)
 
 #### Step 5
 The next step will create multiple `converter` threads to read from multiple `parsor` threads via a single shared buffer.  The `converter` will wait for data (spin wait is acceptable) but will terminate if there are no active `parsor` and the buffer is empty.  
@@ -169,11 +169,11 @@ The next step will create multiple `converter` threads to read from multiple `pa
 
 #### Step 6
 Moving back to the `parsor` threads, each thread must record the data it has processed.  Files are a shared resource and therefore must be protected from multiple processes accessing it.
-![](Step6.png)
+![](images/Step6.png)
 
 #### Step 7 - extra credit
 The last step of your implementation is to create a method of handling different numbers of files and parsing threads.  This can be accomplished by creating an API for the parsing threads to access a single line from a file.  This API will abstract the number of files being handled and the mechanism used to manage the files.  The parsing threads only need to request a line from a file and let the API  provide it.  The implementation of the file handling might use a FCFS policy to handle all the lines of one file before going to the next file, or it might use a Round Robin policy that will read the next line from each file before returning to read another line from the first file.
-![](Step7.png)
+![](images/Step7.png)
 
 
 ### 6. External Resources
