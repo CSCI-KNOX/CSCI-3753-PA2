@@ -178,7 +178,7 @@ The last step of your implementation is to create a method of handling different
 ![](images/Step7.png)
 
 
-### 6. &nbsp;&nbsp;External Resources
+## 6. &nbsp;&nbsp;External Resources
 
 You may use the following libraries and code to complete this assignment, as well as anything you have written for this assignment:
 
