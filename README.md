@@ -20,12 +20,16 @@ This monolithic solution would work well on a single CPU, but would still be pau
 
 Your solution for this assignment will create a multi-threaded application that resolves domain names to IP addresses. The application is composed of two sub-systems, `parser` and `converter`. The `parser` will extract a domain name from the input data and pass it on to the `converter`, which will find the IP address and write the information to the output file. The sub-systems communicate with each other using a bounded buffer. To make the application even more efficient, you will design it to support multiple `parser` and multiple `converter` so that no single input item can cause the system to be blocked no matter how long it takes its processing to be performed.  See Figure 1 for a visual description.
 
+```
+NOT WORKING
 <table class="image">
 <caption align="bottom">Figure 1: Creation of an application to processes data from multiple files using multiple parsing threads that store data into a shared buffer.  Multiple threads will take items out of the shared buffer for processing.  Shared resources will need to be protected from race conditions using synchronization methods. </caption>
 <tr><td>
-![](Step7.png)
+![](PA2-overview.png)
 </td></tr>
 </table>
+```
+![](PA2-overview.png)
 
 ## 2. Description
 
