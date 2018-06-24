@@ -223,7 +223,30 @@ valgrind ./pa2main text1.txt text2.txt ...... textN.txt results.txt
 
 Valgrind should report that you have freed all allocated memory and should not produce any additional warnings or errors.
 
-You can write your code in any environment you like. But you have to make sure that your programs can be compiled and executed in the Virtual Machine that has been provided for this class or on the CSEL machines.
+You can write your code in any environment you like. But you have to make sure that your programs can be compiled and executed on your Raspberry PI that you are using for this class.
+
+### Points awarded
+For any points to be awarded for this programming assignment, the criteria below must be met.  Each level assumes all the criteria for previous levels.
+
+- Application must compile and complete processing of given files
+- Application must produce the correct results for given data
+- Application must report that you have freed all allocated memory and do not have any additional warnings or errors from Valgrind.
+
+#### ** up to 60 points (thru step 3)
+- must read and process the parameters
+- must create parsing thread to read lines from a file
+- must create conversion thread to take domain name and find IP address
+- must communicate between threads using a shared buffer that is protected by a mutex
+
+#### ** up to 80 points (thru step 5)
+- must use multiple parsing threads as specified on command line
+- must use multiple conversion threads as specified on command line
+- must use a mutex to protect the final results file
+
+#### ** upto 100 points (thru step 6)
+- must write the progress of the parsing threads to a shared file (protected by a mutex)
+- must handle more files than the number of parsing threads
+
 
 ### Extra Credit
 

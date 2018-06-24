@@ -18,15 +18,16 @@ void* doSomeThing(void *arg)
 		if ( pthread_equal(id,tid[thread_no]) )
 			break; // break out of loop, found the thread
 
-	printf("\n Thread %d – active\n", thread_no);
-	
-	for(i=0 ; i < (0x0FFFFFFF * (thread_no+1)) ; i++)
-		;	// loop for a long time?
-			printf("\n Thread %d – active\n", thread_no);
+	printf("\n Thread %d – active", thread_no);
 
+	// run a random amount of time	
+	int a = (rand() % 15);
+	while (a != (rand() % 15))
+		sleep(1);
 	
-	printf("\n Thread %d exiting\n", thread_no);
+	printf("\n Thread %d exiting", thread_no);
 
+	pthread_exit(0);	
 	return NULL;
 }
 
@@ -37,6 +38,9 @@ int main(int argc, char* argv[])
 	int n_threads;
 	int err;
 	int arg;
+
+	// seed the random number generator
+	srand(time(NULL));
 
 	printf ("The parameters are:\n");
 	for (arg=0 ; arg < argc ; arg++)
@@ -53,11 +57,11 @@ int main(int argc, char* argv[])
 		if (err != 0)
 			printf("\nError thread :[%s]", strerror(err));
 		else
-			printf("\n Thread %d created\n", i);
+			printf("\n Thread %d created", i);
 		i++;
 	} 
 	
-	sleep(15);
+	sleep(5*n_threads);
 	printf("\n Main thread exiting\n");
 	return 0;
 }
