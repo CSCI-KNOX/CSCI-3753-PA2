@@ -74,7 +74,7 @@ Your application will take a command line argument to specify the number of `par
 ```
 Thread <thread id> serviced ### files.
 ```
-where `<thread id>` is that thread's process id.  To get the thread id of a thread on Linux systems, use `gettid()`.
+where `<thread id>` is that thread's process id.  To get the thread id of a thread on Linux systems, use `pthread_self()`.
 
 
 
@@ -147,7 +147,7 @@ This is a very difficult application to debug.  If you write all the code for th
 
 This application must read parameters from the command line (see section 4.1) with names of files to be processed.  Once you have created a skeleton application that processes information on the command line, you can begin to add in features.  Make sure that you adequately test each of your steps before moving to the next step.  This may require that you write some testing code within your application that can determine if you have performed that step correctly. Once your testing has shown that a step has been completed, you can move on to the next step.  If you add some code and something breaks, then it is either the code you just added, or you did not thoroughly test a previous step.  Usually it is the new code that has been added.
 
-Try creating a simple application to create and wait for termination of threads.  You might look at the example program provided in the repository.
+Try creating a simple application to create and wait for termination of threads.  You might look at the example program provided in the repository.  It is important that you understand how the code works at each step before trying to write code for the next step. To get started, make sure you understand how threads work before trying to write the other code.
 
 ### Step 1
 The first step is to create a simple program to create a parsing thread that will repeatedly read a line from a given file and add an entry into the shared buffer.  You will need to validate that the buffer has the correct number of entries.
